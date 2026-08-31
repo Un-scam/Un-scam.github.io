@@ -11,5 +11,19 @@
     "issue_url": "https://github.com/Un-scam/Un-scam.github.io/issues/5",
     "submittedBy": "vijaysamant4368",
     "dateAdded": "2026-08-31"
+  },
+  
+  {
+    "id": "zenithbyte",
+    "name": "Zenithbyte",
+    "status": "blacklist",
+    "category": [
+      "internship",
+      "training-fee"
+    ],
+    "linkedinURL": "https://www.linkedin.com/company/zenith-byte",
+    "issue_url": null,
+    "submittedBy": "vijaysamant4368",
+    "dateAdded": "2026-08-31"
   }
 ]
