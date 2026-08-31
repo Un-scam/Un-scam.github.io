@@ -1,31 +1,5 @@
 [
   {
-    "id": "globex-fake-internships",
-    "name": "Globex Fake Internships",
-    "status": "blacklist",
-    "category": [
-      "internship",
-      "remote",
-      "training-fee"
-    ],
-    "linkedinURL": "https://www.linkedin.com/company/globex-fake-internships",
-    "issue_url": "https://github.com/Un-scam/Un-scam.github.io/issues/3",
-    "submittedBy": "octocat",
-    "dateAdded": "2026-08-01"
-  },
-  {
-    "id": "acme-legit-internships",
-    "name": "Acme Legit Internships",
-    "status": "whitelist",
-    "category": [
-      "internship"
-    ],
-    "linkedinURL": "https://www.linkedin.com/company/acme-legit-internships",
-    "issue_url": "https://github.com/Un-scam/Un-scam.github.io/issues/1",
-    "submittedBy": "octocat",
-    "dateAdded": "2026-08-20"
-  },
-  {
     "id": "unified-mentor",
     "name": "Unified Mentor",
     "status": "blacklist",
@@ -34,7 +8,7 @@
       "training-fee"
     ],
     "linkedinURL": "https://www.linkedin.com/company/unifiedmentor",
-    "issue_url": "https://github.com/Un-scam/Un-scam.github.io/issues/4",
+    "issue_url": null,
     "submittedBy": "vijaysamant4368",
     "dateAdded": "2026-08-31"
   }
