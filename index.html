@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unscam - LinkedIn internship scam tracker</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1>unscam</h1>
+    <p>Black/white list of LinkedIn "internship" companies.</p>
+  </header>
+
+  <main>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search company name…" />
+      <select id="status-filter">
+        <option value="all">All statuses</option>
+        <option value="blacklist">Blacklist</option>
+        <option value="whitelist">Whitelist</option>
+        <option value="pending">Pending</option>
+      </select>
+      <select id="sort-by">
+        <option value="name">Sort: Name (A–Z)</option>
+        <option value="date">Sort: Date added (newest)</option>
+      </select>
+    </div>
+
+    <p id="count" class="count"></p>
+    <div id="list" class="list"></div>
+  </main>
+
+  <footer>
+    <p>
+      Data lives in <a href="data/companies.json">data/companies.json</a>.
+      Found a scam or a false positive?
+      <a href="https://github.com/Un-scam/Un-scam.github.io/blob/main/CONTRIBUTING.md">Contribute here</a>.
+    </p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

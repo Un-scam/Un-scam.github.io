@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Add a new company
+    url: https://github.com/Un-scam/Un-scam.github.io/blob/main/CONTRIBUTING.md#adding-a-new-company
+    about: New companies are added via pull request, not issues. See CONTRIBUTING.md.
+  - name: Share an experience or request a status change
+    url: https://github.com/Un-scam/Un-scam.github.io/blob/main/CONTRIBUTING.md#reporting-new-evidence-or-a-status-change-on-an-existing-company
+    about: Find the company on the site and comment on its existing issue.

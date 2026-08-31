@@ -1,0 +1,58 @@
+name: Sync new companies to issues
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/companies.json"
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: main-bot-push
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # If nothing is pending an issue, this exits immediately with no
+      # writes at all. That's what stops the commit below from ever
+      # re-triggering this same workflow in a loop.
+      - name: Create issues for new companies
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/create_issues.js
+
+      - name: Commit issue_url updates
+        run: |
+          if ! git diff --quiet -- data/companies.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/companies.json
+            git commit -m "chore(bot): link issue_url for new companies [skip ci]"
+            # Another bot workflow may push to main between our checkout and
+            # this push (concurrency group above serializes same-workflow
+            # runs but not different workflows), retry with rebase.
+            for i in 1 2 3 4 5; do
+              git push && break
+              echo "Push rejected (attempt $i), rebasing onto latest main…"
+              git fetch origin main
+              git rebase origin/main
+            done
+          else
+            echo "No changes to commit."
+          fi

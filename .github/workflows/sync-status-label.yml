@@ -1,0 +1,48 @@
+name: Sync status from label
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: main-bot-push
+  cancel-in-progress: false
+
+jobs:
+  sync-status:
+    if: github.event.label.name == 'approved:blacklist' || github.event.label.name == 'approved:whitelist'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sync status from label
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: node scripts/sync_status.js
+
+      - name: Commit status update
+        run: |
+          if ! git diff --quiet -- data/companies.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/companies.json
+            git commit -m "chore(bot): update status via label sync"
+            for i in 1 2 3 4 5; do
+              git push && break
+              echo "Push rejected (attempt $i), rebasing onto latest main…"
+              git fetch origin main
+              git rebase origin/main
+            done
+          else
+            echo "No changes to commit."
+          fi

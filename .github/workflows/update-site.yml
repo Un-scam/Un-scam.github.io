@@ -1,0 +1,70 @@
+name: Refresh site data & pages
+
+# Triggers:
+#  - push to main touching companies.json: catches new/changed companies
+#  - issue_comment created: opportunistic refresh whenever anyone comments
+#  - schedule: the only reliable way to pick up new 👍/👎 reactions, since
+#    GitHub Actions has no native trigger for reaction events
+#  - workflow_dispatch: manual refresh
+#
+# Loop safety: this job only ever writes data/stats.json and companies/**,
+# never data/companies.json, so its own commit can't match the push
+# trigger's path filter above and can't retrigger this workflow (or
+# sync-new-companies.yml, which watches the same path).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/companies.json"
+  issue_comment:
+    types: [created]
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: main-bot-push
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scrape vote/comment stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/scrape_stats.js
+
+      - name: Generate company pages
+        run: node scripts/generate_pages.js
+
+      - name: Commit changes
+        run: |
+          if ! git diff --quiet -- data/stats.json companies/; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/stats.json companies/
+            git commit -m "chore(bot): refresh vote stats and company pages"
+            for i in 1 2 3 4 5; do
+              git push && break
+              echo "Push rejected (attempt $i), rebasing onto latest main…"
+              git fetch origin main
+              git rebase origin/main
+            done
+          else
+            echo "No changes to commit."
+          fi

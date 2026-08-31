@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "unscam companies list",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "status", "category", "linkedinURL", "submittedBy", "dateAdded"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "description": "Unique lowercase kebab-case slug."
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "status": {
+        "type": "string",
+        "enum": ["blacklist", "whitelist", "pending"]
+      },
+      "category": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "linkedinURL": {
+        "type": "string",
+        "pattern": "^https?://(www\\.)?linkedin\\.com/.+",
+        "description": "The company's LinkedIn page."
+      },
+      "issue_url": {
+        "type": ["string", "null"],
+        "pattern": "^https://github\\.com/[^/]+/[^/]+/issues/[0-9]+$",
+        "description": "Bot-managed. Must be null on new entries; a GitHub Action fills it in after merge."
+      },
+      "submittedBy": {
+        "type": "string",
+        "minLength": 1,
+        "description": "GitHub username of the PR author. Validated against the actual PR author by CI."
+      },
+      "dateAdded": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{name}} - unscam</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html" class="back-link">← unscam</a></h1>
+  </header>
+
+  <main class="profile">
+    <article class="card status-{{status}} profile-card">
+      <div class="card-header">
+        <h2>{{name}}</h2>
+        <span class="badge badge-{{status}}">{{statusLabel}}</span>
+      </div>
+
+      <div class="tags">
+        <span class="tag">{{category}}</span>
+      </div>
+
+      <div class="vote-bar" title="{{pctPositive}} positive / {{pctNegative}} negative">
+        <div class="vote-bar-positive" style="width: {{pctPositiveRaw}}%"></div>
+      </div>
+      <p class="vote-summary">
+        {{thumbsUp}} up &nbsp; {{thumbsDown}} down &nbsp; ({{totalVotes}} total votes, {{pctPositive}} positive)
+      </p>
+
+      <p class="meta">
+        Added {{dateAdded}} by @{{submittedBy}} &middot; {{commentCount}} comment(s)
+      </p>
+
+      <div class="card-footer profile-links">
+        <a href="{{linkedinURL}}" target="_blank" rel="noopener">Company on LinkedIn</a>
+        <a href="{{issueUrl}}" target="_blank" rel="noopener">Discuss &amp; vote on GitHub</a>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
