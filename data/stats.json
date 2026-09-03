@@ -18,5 +18,35 @@
     "pctNegative": null,
     "commentCount": 0,
     "updatedAt": "2026-08-31T21:58:32.698Z"
+  },
+  "devryxa": {
+    "issueNumber": 8,
+    "thumbsUp": 0,
+    "thumbsDown": 0,
+    "totalVotes": 0,
+    "pctPositive": null,
+    "pctNegative": null,
+    "commentCount": 0,
+    "updatedAt": "2026-09-03T09:21:34.044Z"
+  },
+  "vortenza-systems": {
+    "issueNumber": 9,
+    "thumbsUp": 0,
+    "thumbsDown": 0,
+    "totalVotes": 0,
+    "pctPositive": null,
+    "pctNegative": null,
+    "commentCount": 0,
+    "updatedAt": "2026-09-03T09:21:34.303Z"
+  },
+  "dexters-tech": {
+    "issueNumber": 10,
+    "thumbsUp": 0,
+    "thumbsDown": 0,
+    "totalVotes": 0,
+    "pctPositive": null,
+    "pctNegative": null,
+    "commentCount": 0,
+    "updatedAt": "2026-09-03T09:21:34.534Z"
   }
 }
