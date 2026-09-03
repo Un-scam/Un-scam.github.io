@@ -24,5 +24,45 @@
     "issue_url": "https://github.com/Un-scam/Un-scam.github.io/issues/6",
     "submittedBy": "vijaysamant4368",
     "dateAdded": "2026-08-31"
+  },
+  {
+    "id": "devryxa",
+    "name": "Devryxa",
+    "status": "blacklist",
+    "category": [
+      "internship",
+      "training-fee"
+    ],
+    "linkedinURL": "https://www.linkedin.com/company/devryxa",
+    "issue_url": null,
+    "submittedBy": "vijaysamant4368",
+    "dateAdded": "2026-09-03"
+  },
+  {
+    "id": "vortenza-systems",
+    "name": "Vortenza Systems",
+    "status": "blacklist",
+    "category": [
+      "internship",
+      "training-fee"
+    ],
+    "linkedinURL": "https://www.linkedin.com/company/vortenza-systems",
+    "issue_url": null,
+    "submittedBy": "vijaysamant4368",
+    "dateAdded": "2026-09-03"
+  },
+  {
+    "id": "dexters-tech",
+    "name": "Dexter's Tech",
+    "status": "blacklist",
+    "category": [
+      "internship",
+      "training-fee"
+    ],
+    "linkedinURL": "https://www.linkedin.com/company/dexter-s-tech",
+    "issue_url": null,
+    "submittedBy": "vijaysamant4368",
+    "dateAdded": "2026-09-03"
   }
+
 ]
